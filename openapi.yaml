@@ -1,0 +1,127 @@
+openapi: '3.0.0'
+info:
+  version: 1.0.0
+  title: Kotakpintar Media API
+  license:
+    name: MIT
+servers:
+  - url: https://api.kotakpintar.media/v1
+paths:
+  /media:
+    get:
+      summary: List all media assets
+      operationId: listMedia
+      parameters:
+        - name: limit
+          in: query
+          description: How many items to return at one time (max 100)
+          required: false
+          schema:
+            type: integer
+            format: int32
+      responses:
+        200:
+          description: A paged array of media assets
+          headers:
+            x-next:
+              description: A link to the next page of responses
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Media'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      summary: Create a media asset
+      operationId: createMedia
+      responses:
+        201:
+          description: Media asset created successfully
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /media/{mediaId}:
+    get:
+      summary: Info for a specific media asset
+      operationId: showMediaById
+      parameters:
+        - name: mediaId
+          in: path
+          required: true
+          description: The id of the media asset to retrieve
+          schema:
+            type: string
+      responses:
+        200:
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Media'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    put:
+      summary: Update a specific media asset
+      operationId: updateMediaById
+      responses:
+        200:
+          description: Media asset updated successfully
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      summary: Delete a specific media asset
+      operationId: deleteMediaById
+      responses:
+        204:
+          description: Media asset deleted successfully
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    Media:
+      required:
+        - id
+        - name
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        tag:
+          type: string
+    Medias:
+      type: array
+      items:
+        $ref: '#/components/schemas/Media'
+    Error:
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string

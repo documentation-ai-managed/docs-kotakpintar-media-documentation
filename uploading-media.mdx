@@ -1,0 +1,137 @@
+---
+title: Uploading Media
+description: Guide to uploading and processing media files in Kotakpintar Media
+---
+
+## Supported File Types
+
+Kotakpintar Media supports a comprehensive range of media formats to accommodate various content types.
+
+<Columns cols={3}>
+  <Card title="Images" icon="image" href="#images">
+    JPEG, PNG, GIF, WebP, and TIFF formats up to 50MB each.
+  </Card>
+  <Card title="Videos" icon="video" href="#videos">
+    MP4, AVI, MOV, and WMV files up to 2GB for standard plans.
+  </Card>
+  <Card title="Documents" icon="file-text" href="#documents">
+    PDF, DOCX, XLSX, and PPTX files for secure storage.
+  </Card>
+</Columns>
+
+## Upload Methods
+
+Choose the method that best fits your workflow.
+
+<Tabs>
+  <Tab title="Web Interface" icon="globe">
+    Use our drag-and-drop interface for quick uploads.
+    
+    <Steps>
+      <Step title="Navigate to Upload" icon="upload">
+        Click the upload button in your dashboard.
+      </Step>
+      <Step title="Select Files" icon="file">
+        Drag files into the upload area or click to browse.
+      </Step>
+      <Step title="Add Metadata" icon="tag">
+        Enter titles, descriptions, and tags for organization.
+      </Step>
+      <Step title="Process Upload" icon="play">
+        Click upload to process your files.
+      </Step>
+    </Steps>
+    
+    <Callout kind="tip">Bulk uploads support up to 100 files simultaneously.</Callout>
+  </Tab>
+  <Tab title="API Upload" icon="code">
+    Integrate uploads directly into your applications.
+    
+    <CodeGroup tabs="JavaScript,Python">
+      ````javascript
+      const formData = new FormData();
+      formData.append('file', fileInput.files[0]);
+      formData.append('title', 'My Media File');
+      formData.append('tags', 'important,project');
+      
+      fetch('/api/media/upload', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`
+        },
+        body: formData
+      })
+      .then(response => response.json())
+      .then(data => console.log('Upload successful:', data));
+      ````
+      ````python
+      import requests
+      
+      files = {'file': open('media.mp4', 'rb')}
+      data = {'title': 'Sample Video', 'tags': 'demo,video'}
+      headers = {'Authorization': f'Bearer {token}'}
+      
+      response = requests.post('https://api.kotakpintar.media/media/upload', 
+                             files=files, data=data, headers=headers)
+      print('Upload response:', response.json())
+      ````
+    </CodeGroup>
+  </Tab>
+</Tabs>
+
+## Processing Options
+
+After upload, apply various processing options to optimize your media.
+
+<Expandable title="Image Processing" default-open="true">
+  Resize, crop, and apply filters to images automatically.
+  
+  <CodeGroup tabs="Resize,Crop">
+    ````javascript
+    // Resize image to 800x600
+    const resizeOptions = {
+      width: 800,
+      height: 600,
+      maintainAspectRatio: true
+    };
+    ````
+    ````javascript
+    // Crop to square
+    const cropOptions = {
+      x: 100,
+      y: 50,
+      width: 300,
+      height: 300
+    };
+    ````
+  </CodeGroup>
+</Expandable>
+
+<Expandable title="Video Transcoding" default-open="false">
+  Convert videos to different formats and resolutions.
+  
+  <Callout kind="info">Transcoding may take several minutes for large files.</Callout>
+</Expandable>
+
+## Best Practices
+
+Follow these guidelines for optimal upload performance.
+
+- Compress large files before uploading to reduce transfer time.
+- Use descriptive filenames and metadata for better organization.
+- Verify file integrity after upload using checksums.
+- Schedule bulk uploads during off-peak hours to avoid congestion.
+
+<Steps>
+  <Step title="Prepare Files" icon="settings">
+    Optimize file sizes and ensure format compatibility.
+  </Step>
+  <Step title="Batch Upload" icon="package">
+    Group related files for efficient processing.
+  </Step>
+  <Step title="Verify Success" icon="check-circle">
+    Check upload status and resolve any errors.
+  </Step>
+</Steps>
+
+By following these upload guidelines, you'll ensure smooth integration of your media assets into the Kotakpintar platform.

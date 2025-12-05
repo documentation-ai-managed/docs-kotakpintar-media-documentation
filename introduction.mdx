@@ -1,0 +1,101 @@
+---
+title: Introduction
+description: Overview of Kotakpintar Media Documentation and its core capabilities
+---
+
+## Getting Started
+
+Kotakpintar Media Documentation provides a comprehensive platform for managing and organizing your media assets efficiently. Whether you're uploading images, videos, or documents, our system offers seamless integration and powerful features to streamline your workflow.
+
+<Columns cols={3}>
+  <Card title="Upload Media" icon="upload" href="uploading-media">
+    Learn how to upload and organize your media files with our intuitive interface.
+  </Card>
+  <Card title="Manage Assets" icon="folder" href="managing-assets">
+    Discover tools for categorizing, tagging, and maintaining your media library.
+  </Card>
+  <Card title="API Integration" icon="code" href="api-overview">
+    Integrate our media services into your applications using our robust API.
+  </Card>
+</Columns>
+
+## Key Features
+
+Our platform stands out with advanced features designed for modern media management needs.
+
+<Tabs>
+  <Tab title="Storage" icon="database">
+    Secure cloud storage with automatic backups and version control. Our system supports multiple file formats including JPEG, PNG, MP4, and PDF. You can store up to 100GB per account with scalable options available.
+    
+    <Callout kind="tip">Pro tip: Enable auto-backup to ensure your media assets are always protected.</Callout>
+    
+    <Expandable title="Supported File Types" default-open="false">
+      We support a wide range of media formats including images (JPEG, PNG, GIF), videos (MP4, AVI, MOV), documents (PDF, DOCX, XLSX), and audio files (MP3, WAV). File size limits vary by plan, from 10MB for free accounts to unlimited for enterprise.
+    </Expandable>
+  </Tab>
+  <Tab title="Collaboration" icon="users">
+    Share media assets with your team securely. Set permissions for viewing, editing, or downloading files. Our collaboration tools include real-time commenting and approval workflows.
+    
+    <Steps>
+      <Step title="Invite Team Members" icon="user-plus">
+        Go to your dashboard and click "Invite" to add collaborators.
+      </Step>
+      <Step title="Set Permissions" icon="settings">
+        Choose access levels: viewer, editor, or admin for each member.
+      </Step>
+      <Step title="Share Assets" icon="share-2">
+        Select files and use the share button to distribute links.
+      </Step>
+    </Steps>
+  </Tab>
+</Tabs>
+
+<Callout kind="info">All plans include basic storage and collaboration features. Upgrade for advanced analytics and custom integrations.</Callout>
+
+## Quick Start Guide
+
+Get up and running in minutes with our simple setup process.
+
+<Steps>
+  <Step title="Create Account" icon="user">
+    Sign up at kotakpintar.media and verify your email.
+    
+    <CodeGroup tabs="Web,API">
+      ````javascript
+      // Web registration
+      const user = {
+        email: 'user@example.com',
+        password: 'securePass123'
+      };
+      fetch('/api/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(user)
+      });
+      ````
+      ````bash
+      # API registration
+      curl -X POST https://api.kotakpintar.media/register \
+        -H "Content-Type: application/json" \
+        -d '{"email":"user@example.com","password":"securePass123"}'
+      ````
+    </CodeGroup>
+  </Step>
+  <Step title="Upload First Media" icon="upload">
+    Navigate to the upload section and drag files or click to browse.
+  </Step>
+  <Step title="Organize Content" icon="folder">
+    Create folders and add tags to keep your media organized.
+  </Step>
+</Steps>
+
+<Expandable title="Troubleshooting Common Issues" default-open="false">
+  <Expandable title="Upload Failures" default-open="false">
+    If uploads fail, check file size limits and supported formats. Ensure stable internet connection.
+  </Expandable>
+  <Expandable title="Access Denied" default-open="false">
+    Verify your account permissions and contact support if issues persist.
+  </Expandable>
+</Expandable>
+
+With Kotakpintar Media, managing your digital assets has never been easier. Explore our features and start building your media library today.

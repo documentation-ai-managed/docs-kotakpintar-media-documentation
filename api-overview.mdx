@@ -1,0 +1,163 @@
+---
+title: API Overview
+description: Introduction to Kotakpintar Media API for programmatic access
+---
+
+## API Fundamentals
+
+The Kotakpintar Media API provides comprehensive programmatic access to all platform features.
+
+<Columns cols={3}>
+  <Card title="RESTful Design" icon="server" href="#rest">
+    Standard REST principles with JSON responses.
+  </Card>
+  <Card title="Authentication" icon="key" href="#auth">
+    Secure OAuth 2.0 and API key authentication.
+  </Card>
+  <Card title="Rate Limiting" icon="clock" href="#rate">
+    Fair usage policies with clear limits.
+  </Card>
+</Columns>
+
+## Getting Started
+
+Authenticate and make your first API call.
+
+<Tabs>
+  <Tab title="Authentication" icon="lock">
+    <Steps>
+      <Step title="Obtain API Key" icon="key">
+        Generate keys in your account settings.
+      </Step>
+      <Step title="Set Headers" icon="settings">
+        Include authorization in request headers.
+      </Step>
+      <Step title="Test Connection" icon="check-circle">
+        Verify authentication with a simple request.
+      </Step>
+    </Steps>
+    
+    <CodeGroup tabs="cURL,JavaScript">
+      ````bash
+      curl -H "Authorization: Bearer YOUR_API_KEY" \
+        https://api.kotakpintar.media/media
+      ````
+      ````javascript
+      fetch('https://api.kotakpintar.media/media', {
+        headers: {
+          'Authorization': `Bearer ${apiKey}`
+        }
+      })
+      .then(response => response.json())
+      .then(data => console.log(data));
+      ````
+    </CodeGroup>
+  </Tab>
+  <Tab title="SDKs" icon="package">
+    Use our official SDKs for faster development.
+    
+    <Callout kind="tip">SDKs handle authentication and error handling automatically.</Callout>
+    
+    <Expandable title="Available SDKs" default-open="false">
+      - JavaScript/Node.js
+      - Python
+      - PHP
+      - Java
+      - .NET
+    </Expandable>
+  </Tab>
+</Tabs>
+
+## Core Endpoints
+
+Essential API operations for media management.
+
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/media` | GET | List media assets with filtering |
+| `/media` | POST | Upload new media files |
+| `/media/{id}` | GET | Retrieve specific asset details |
+| `/media/{id}` | PUT | Update asset metadata |
+| `/media/{id}` | DELETE | Remove asset from library |
+| `/folders` | GET | List folder structure |
+| `/folders` | POST | Create new folder |
+
+## Error Handling
+
+Robust error responses with actionable information.
+
+<Expandable title="Common Error Codes" default-open="true">
+  - **400 Bad Request**: Invalid parameters or malformed request
+  - **401 Unauthorized**: Missing or invalid authentication
+  - **403 Forbidden**: Insufficient permissions
+  - **404 Not Found**: Resource does not exist
+  - **429 Too Many Requests**: Rate limit exceeded
+  - **500 Internal Server Error**: Server-side issue
+</Expandable>
+
+<CodeGroup tabs="Error Response,Handling">
+  ````json
+  {
+    "error": {
+      "code": 400,
+      "message": "Invalid file format",
+      "details": "Supported formats: JPEG, PNG, MP4"
+    }
+  }
+  ````
+  ````javascript
+  fetch('/api/media/upload', {
+    method: 'POST',
+    body: formData
+  })
+  .then(response => {
+    if (!response.ok) {
+      return response.json().then(err => {
+        throw new Error(err.error.message);
+      });
+    }
+    return response.json();
+  })
+  .catch(error => console.error('API Error:', error.message));
+  ````
+</CodeGroup>
+
+## Rate Limits
+
+Understand and work within API usage limits.
+
+<Callout kind="info">Rate limits reset hourly and are per API key.</Callout>
+
+| Plan | Requests/Hour | Requests/Minute |
+|------|----------------|-----------------|
+| Free | 1,000 | 50 |
+| Pro | 10,000 | 500 |
+| Enterprise | 100,000 | 5,000 |
+
+<Expandable title="Rate Limit Headers" default-open="false">
+  Check response headers for current usage:
+  - `X-RateLimit-Limit`: Maximum requests per hour
+  - `X-RateLimit-Remaining`: Remaining requests
+  - `X-RateLimit-Reset`: Time until reset
+</Expandable>
+
+## Best Practices
+
+Optimize your API usage for reliability and performance.
+
+<Steps>
+  <Step title="Use Pagination" icon="list">
+    Implement pagination for large result sets.
+  </Step>
+  <Step title="Cache Responses" icon="database">
+    Cache frequently accessed data to reduce requests.
+  </Step>
+  <Step title="Handle Retries" icon="refresh-cw">
+    Implement exponential backoff for failed requests.
+  </Step>
+  <Step title="Monitor Usage" icon="bar-chart">
+    Track API usage and set up alerts for limits.
+  </Step>
+</Steps>
+
+The Kotakpintar Media API empowers developers to build powerful media management solutions with comprehensive functionality and reliable performance.

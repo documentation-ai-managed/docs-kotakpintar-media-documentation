@@ -1,0 +1,162 @@
+---
+title: Integrations
+description: Connecting Kotakpintar Media with third-party services and platforms
+---
+
+## Integration Overview
+
+Seamlessly connect your media assets with popular platforms and services.
+
+<Columns cols={3}>
+  <Card title="Social Media" icon="share-2" href="#social">
+    Share directly to Facebook, Twitter, and Instagram.
+  </Card>
+  <Card title="Content Management" icon="file-text" href="#cms">
+    Integrate with WordPress, Drupal, and other CMS platforms.
+  </Card>
+  <Card title="E-commerce" icon="shopping-cart" href="#ecommerce">
+    Connect with Shopify, WooCommerce, and Magento.
+  </Card>
+</Columns>
+
+## Social Media Integration
+
+Expand your reach by connecting with social platforms.
+
+<Tabs>
+  <Tab title="Facebook" icon="facebook">
+    <Steps>
+      <Step title="Connect Account" icon="link">
+        Authorize Facebook access in integrations settings.
+      </Step>
+      <Step title="Select Assets" icon="image">
+        Choose media to share from your library.
+      </Step>
+      <Step title="Post Content" icon="send">
+        Add captions and publish directly to your page.
+      </Step>
+    </Steps>
+    
+    <Callout kind="tip">Schedule posts for optimal engagement times.</Callout>
+  </Tab>
+  <Tab title="Instagram" icon="instagram">
+    <Steps>
+      <Step title="Link Business Account" icon="user-check">
+        Connect your Instagram Business account.
+      </Step>
+      <Step title="Create Stories" icon="camera">
+        Upload images or videos for story content.
+      </Step>
+      <Step title="Publish" icon="play-circle">
+        Share stories with automatic formatting.
+      </Step>
+    </Steps>
+  </Tab>
+</Tabs>
+
+## CMS Integration
+
+Embed media seamlessly into your website content.
+
+<Expandable title="WordPress Plugin" default-open="true">
+  Install our official plugin for seamless WordPress integration.
+  
+  <CodeGroup tabs="Installation,Usage">
+    ````bash
+    # Install via WordPress admin
+    1. Go to Plugins > Add New
+    2. Search for "Kotakpintar Media"
+    3. Click Install and Activate
+    ````
+    ````php
+    // Usage in theme files
+    <?php
+    echo do_shortcode('[kotakpintar_media id="123" size="large"]');
+    ?>
+    ````
+  </CodeGroup>
+</Expandable>
+
+<Expandable title="API Integration" default-open="false">
+  Use our REST API for custom integrations.
+  
+  <Callout kind="info">API keys are available in your account settings.</Callout>
+</Expandable>
+
+## E-commerce Platforms
+
+Enhance product listings with rich media.
+
+<Steps>
+  <Step title="Connect Store" icon="plug">
+    Authorize access to your e-commerce platform.
+  </Step>
+  <Step title="Sync Products" icon="refresh-cw">
+    Import product catalogs and media requirements.
+  </Step>
+  <Step title="Upload Assets" icon="upload">
+    Add high-quality images and videos to products.
+  </Step>
+  <Step title="Publish" icon="send">
+    Update store listings with enhanced media.
+  </Step>
+</Steps>
+
+## Webhooks
+
+Receive real-time notifications for integration automation.
+
+<Expandable title="Webhook Configuration" default-open="true">
+  Set up webhooks to trigger actions when media events occur.
+  
+  | Event | Description | Payload |
+  |-------|-------------|---------|
+  | media.uploaded | New file uploaded | File metadata and URL |
+  | media.processed | Processing completed | Processing results |
+  | media.deleted | Asset removed | Deletion confirmation |
+  | folder.created | New folder added | Folder details |
+</Expandable>
+
+<CodeGroup tabs="Setup,Example">
+  ````javascript
+  // Webhook setup
+  const webhookConfig = {
+    url: 'https://your-app.com/webhook',
+    events: ['media.uploaded', 'media.processed'],
+    secret: 'your-webhook-secret'
+  };
+  
+  fetch('/api/webhooks', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(webhookConfig)
+  });
+  ````
+  ````json
+  // Sample webhook payload
+  {
+    "event": "media.uploaded",
+    "data": {
+      "id": "abc123",
+      "filename": "product.jpg",
+      "url": "https://cdn.kotakpintar.media/abc123.jpg",
+      "size": 2048576,
+      "type": "image/jpeg"
+    },
+    "timestamp": "2024-01-15T10:30:00Z"
+  }
+  ````
+</CodeGroup>
+
+## Security Considerations
+
+Maintain secure connections and protect your data.
+
+- Use HTTPS for all webhook endpoints
+- Implement authentication and authorization
+- Validate webhook signatures to prevent spoofing
+- Monitor integration health and error rates
+
+<Callout kind="alert">Always test integrations in a staging environment before production deployment.</Callout>
+
+With these integration capabilities, you can extend Kotakpintar Media throughout your digital ecosystem.

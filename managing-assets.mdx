@@ -1,0 +1,135 @@
+---
+title: Managing Assets
+description: Tools and techniques for organizing and maintaining your media library
+---
+
+## Asset Organization
+
+Effective media management starts with proper organization and categorization.
+
+<Columns cols={2}>
+  <Card title="Folders" icon="folder" href="#folders">
+    Create hierarchical folder structures for logical grouping.
+  </Card>
+  <Card title="Tags" icon="tag" href="#tags">
+    Apply metadata tags for flexible searching and filtering.
+  </Card>
+</Columns>
+
+## Folder Management
+
+Create and manage folder hierarchies to structure your media library.
+
+<Tabs>
+  <Tab title="Creating Folders" icon="folder-plus">
+    <Steps>
+      <Step title="Access Library" icon="home">
+        Navigate to your media library dashboard.
+      </Step>
+      <Step title="Create Folder" icon="plus">
+        Click "New Folder" and enter a descriptive name.
+      </Step>
+      <Step title="Set Permissions" icon="lock">
+        Configure access levels for team members.
+      </Step>
+    </Steps>
+    
+    <Callout kind="tip">Use consistent naming conventions for folders to improve searchability.</Callout>
+  </Tab>
+  <Tab title="Moving Assets" icon="arrow-right">
+    <Steps>
+      <Step title="Select Assets" icon="check-square">
+        Choose files to relocate using checkboxes.
+      </Step>
+      <Step title="Choose Destination" icon="folder-open">
+        Select target folder from the dropdown menu.
+      </Step>
+      <Step title="Confirm Move" icon="check">
+        Click move and verify the transfer.
+      </Step>
+    </Steps>
+  </Tab>
+</Tabs>
+
+## Tagging System
+
+Implement a robust tagging strategy for enhanced asset discoverability.
+
+<Expandable title="Tag Best Practices" default-open="true">
+  - Use lowercase, hyphen-separated tags like "product-photos" or "marketing-videos"
+  - Apply multiple relevant tags to each asset for comprehensive coverage
+  - Create tag hierarchies for complex categorization needs
+  - Regularly audit and clean up unused tags
+</Expandable>
+
+<Expandable title="Bulk Tagging" default-open="false">
+  Apply tags to multiple assets simultaneously.
+  
+  <CodeGroup tabs="Web,API">
+    ````javascript
+    // Bulk tag via web interface
+    const selectedAssets = ['asset1.jpg', 'asset2.mp4'];
+    const tagsToAdd = ['marketing', 'q1-campaign'];
+    
+    fetch('/api/assets/bulk-tag', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify({ assets: selectedAssets, tags: tagsToAdd })
+    });
+    ````
+    ````bash
+    # API bulk tagging
+    curl -X POST https://api.kotakpintar.media/assets/bulk-tag \
+      -H "Content-Type: application/json" \
+      -H "Authorization: Bearer $TOKEN" \
+      -d '{"assets":["asset1.jpg","asset2.mp4"],"tags":["marketing","q1-campaign"]}'
+    ````
+  </CodeGroup>
+</Expandable>
+
+## Search and Filtering
+
+Powerful search capabilities to quickly locate assets.
+
+| Feature | Description | Example |
+|---------|-------------|---------|
+| Text Search | Full-text search across filenames and metadata | Search for "summer campaign" |
+| Tag Filtering | Filter by applied tags | Filter by "product" tag |
+| Date Range | Filter by upload or modification date | Assets from last month |
+| File Type | Filter by media type | Show only videos |
+
+<Callout kind="info">Advanced search supports boolean operators for complex queries.</Callout>
+
+## Version Control
+
+Track changes and maintain asset history.
+
+<Steps>
+  <Step title="Enable Versioning" icon="git-branch">
+    Activate version control in account settings.
+  </Step>
+  <Step title="Edit Assets" icon="edit">
+    Modify files with automatic version creation.
+  </Step>
+  <Step title="Compare Versions" icon="diff">
+    Review changes and restore previous versions if needed.
+  </Step>
+</Steps>
+
+<Expandable title="Storage Impact" default-open="false">
+  Version control increases storage usage but provides valuable backup protection.
+</Expandable>
+
+## Maintenance Tasks
+
+Regular maintenance ensures optimal library performance.
+
+- Archive old assets to reduce active storage costs
+- Delete duplicate files to free up space
+- Update metadata for better organization
+- Run integrity checks to verify file health
+
+By implementing these management strategies, you'll maintain a well-organized, efficient media library that supports your content needs.
